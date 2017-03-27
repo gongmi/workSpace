@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-2.5.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+           http://www.springframework.org/schema/tx 
+           http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+	<context:annotation-config />
+	<context:component-scan base-package="com.gm" />
+<!-- ++++++++++++++++++++++++dataSource c3p0数据源 +++++++++++++++++++++++ -->
+
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		<property name="driverClass" value="com.mysql.jdbc.Driver" />
+		<property name="jdbcUrl"     value="jdbc:mysql://localhost:3306/hrsystem" />
+		<property name="user"        value="root" />
+		<property name="password"    value="" />
+	</bean>
+
+<!-- ++++++++++++++++++++++++sessionFactory+++++++++++++++++++++++++++++ -->
+
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		
+		<property name="dataSource" ref="dataSource" />
+
+		<property name="packagesToScan">
+			<list>
+				<value>com.gm.hrsystem.domain</value>
+			</list>
+		</property>
+
+		<property name="hibernateProperties">
+			<!-- 指定数据库方言、是否自动建表、是否生成SQL语句等 	-->
+			<value>
+			hibernate.dialect=org.hibernate.dialect.MySQL5InnoDBDialect
+			hibernate.hbm2ddl.auto=update
+			hibernate.show_sql=true
+			hibernate.format_sql=true
+			</value>
+		</property>
+	</bean>
+	
+<!-- +++++++++++++++++++++++++++AOP事务+++++++++++++++++++++++++++++ -->
+
+	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="get*" read-only="true" />
+			<tx:method name="*" />
+		</tx:attributes>
+	</tx:advice>
+	
+	<aop:config>
+		<aop:pointcut id="myPointcut" expression="bean(empManager) or bean(mgrManager)" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="myPointcut" />
+	</aop:config>
+	
+<!-- ++++++++++++++++++++++++自动打卡与自动工资+++++++++++++++++++++++++++++ -->
+	
+	<!-- cronExpression指定Cron表达式：每月3日2时启动 -->
+	<bean id="cronTriggerPay"
+		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+
+		<property name="cronExpression" value="0 0 18 3 * ? *" />
+		<property name="jobDetail">
+			<!-- 使用嵌套Bean的方式来定义任务Bean jobClass指定任务Bean的实现类 -->
+			<bean class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+				<property name="jobClass" value="com.gm.hrsystem.schedule.PayJob" />
+				<property name="durability" value="true" />
+				<!-- 为任务Bean注入属性 -->
+				<property name="jobDataAsMap">
+					<map>
+						<entry key="empMgr" value-ref="empManager" />
+					</map>
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<!-- 定义触发器来管理任务Bean cronExpression指定Cron表达式：周一到周五7点、12点执行调度 -->
+	<bean id="cronTriggerPunch"
+		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="cronExpression" value="0 0 7,12 ? * MON-FRI" />
+		<property name="jobDetail">
+			<!-- 使用嵌套Bean的方式来定义任务Bean jobClass指定任务Bean的实现类 -->
+			<bean class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+				<property name="jobClass" value="com.gm.hrsystem.schedule.PunchJob" />
+				<property name="durability" value="true" />
+				<!-- 为任务Bean注入属性 -->
+				<property name="jobDataAsMap">
+					<map>
+						<entry key="empMgr" value-ref="empManager" />
+					</map>
+				</property>
+			</bean>
+		</property>
+	</bean>
+	<!-- 执行实际的调度调度 -->
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="cronTriggerPay" />
+				<ref bean="cronTriggerPunch" />
+			</list>
+		</property>
+	</bean>
+</beans>

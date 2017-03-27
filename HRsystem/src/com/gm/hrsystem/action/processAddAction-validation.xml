@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC 
+	"-//Apache Struts//XWork Validator 1.0.3//EN"
+	"http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+<validators>
+
+	<field name="emp.name">
+	
+		<field-validator type="requiredstring">
+			<message>员工名必填！</message>
+		</field-validator>
+			<field-validator type="stringlength">
+		<param name="minLength">2</param>
+			<param name="maxLength">6</param>
+			<message>您输入员工名必须在2-6个字之间</message>
+		</field-validator>
+	</field>
+	
+	<field name="emp.pass">
+	
+		<field-validator type="requiredstring">
+			<message>密码必填！</message>
+		</field-validator>
+		
+		<field-validator type="regex">
+			<param name="regex"><![CDATA[(\w{4,25})]]></param>
+			<message>输入的密码只能是字母和数字，且长度必须在4到25之间</message>
+		</field-validator>
+		
+	</field>
+ 	<field name="emp.salary">
+	
+		<field-validator type="required">
+			<message>工资必填！</message>
+		</field-validator>
+		
+		<field-validator type="double">
+		<param name="minInclusive">8000</param>
+			<param name="maxInclusive">20000</param>
+			<message>输入的工资只能在${minInclusive}到${maxInclusive}之间</message>
+		</field-validator>
+		
+	</field>
+</validators>

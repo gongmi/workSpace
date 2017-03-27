@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
+<web-app>
+    <context-param>
+        <param-name>mm</param-name>
+        <param-value>fuck</param-value>
+    </context-param>
+    
+    
+    
+  <servlet>
+    <servlet-name>helloservlet</servlet-name>
+    <servlet-class>com.baidiu.helloservlet</servlet-class>
+        <init-param>
+            <param-name>gg</param-name>
+            <param-value>SSS</param-value>
+        </init-param>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>helloservlet</servlet-name>
+    <url-pattern>/servlet/helloservlet</url-pattern>
+  </servlet-mapping>
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+
+</web-app>

@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.i18n.encoding" value="GBK" />
+	<constant name="struts.custom.i18n.resources" value="resource" />
+	<package name="default" extends="struts-default">
+
+		<interceptors>
+			<interceptor name="empAuth"
+				class="com.gm.hrsystem.action.authority.EmpAuthorityInterceptor" />
+
+			<interceptor name="mgrAuth"
+				class="com.gm.hrsystem.action.authority.MgrAuthorityInterceptor" />
+
+			<interceptor-stack name="empStack">
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="empAuth" />
+			</interceptor-stack>
+
+			<interceptor-stack name="mgrStack">
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="mgrAuth" />
+			</interceptor-stack>
+
+		</interceptors>
+		<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+		<global-results>
+			<result name="error">/WEB-INF/content/error.jsp</result>
+			<!-- 限权校验失败就会return LOGIN -->
+			<result name="login">/WEB-INF/content/login.jsp</result>
+			<result name="business">/WEB-INF/content/error.jsp</result>
+			<result name="root">/WEB-INF/content/error.jsp</result>
+		</global-results>
+		
+		<global-exception-mappings>
+			<exception-mapping exception="com.gm.hrsystem.exception.HrException"
+				result="business" />
+			<exception-mapping exception="java.lang.Exception"
+				result="root" />
+		</global-exception-mappings>
+	</package>
+
+	<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+	<package name="system" extends="default">
+<!--前三个action没有配置拦截器interceptor-ref因此会使用父包struts-default的默认拦截器defaultStack -->
+		<action name="Login">
+			<result>/WEB-INF/content/login.jsp</result>
+		</action>
+
+		<action name="Logout" class="com.gm.hrsystem.action.LogoutAction">
+			<result>/WEB-INF/content/login.jsp</result>
+		</action>
+
+		<action name="processLogin" class="com.gm.hrsystem.action.LoginAction">
+			<result name="emp">/WEB-INF/content/employee/index.jsp</result>
+			<result name="mgr">/WEB-INF/content/manager/index.jsp</result>
+			<result name="error">/WEB-INF/content/login.jsp</result>
+			<result name="input">/WEB-INF/content/login.jsp</result>
+		</action>
+
+		<action name="*Punch" class="com.gm.hrsystem.action.PunchAction">
+			<interceptor-ref name="empStack" />
+			<result>/WEB-INF/content/{1}/punch.jsp</result>
+
+		</action>
+		<action name="*Come" class="com.gm.hrsystem.action.processPunchAction"
+			method="Come">
+			<interceptor-ref name="empStack" />
+			<result>/WEB-INF/content/{1}/index.jsp</result>
+
+		</action>
+		<action name="*Leave" class="com.gm.hrsystem.action.processPunchAction"
+			method="Leave">
+			<interceptor-ref name="empStack" />
+			<result>/WEB-INF/content/{1}/index.jsp</result>
+		</action>
+
+		<action name="ViewUnAttend" class="com.gm.hrsystem.action.ViewUnAttendAction">
+			<interceptor-ref name="empStack" />
+			<result>/WEB-INF/content/employee/UnAttend.jsp</result>
+		</action>
+
+		<action name="ViewSalary" class="com.gm.hrsystem.action.ViewSalaryAction">
+			<interceptor-ref name="empStack" />
+			<result>/WEB-INF/content/employee/Salary.jsp</result>
+		</action>
+
+		<action name="AppChange" class="com.gm.hrsystem.action.AppChangeAction">
+			<interceptor-ref name="store">
+				<param name="operationMode">RETRIEVE</param>
+			</interceptor-ref>
+			<!--！！！！！！！！！！ 这里只能用 basicStack 不能用defaultStack why？！！！！！！！ -->
+			<interceptor-ref name="basicStack" />
+
+			<result>/WEB-INF/content/employee/AppChange.jsp</result>
+			<result name="input">/WEB-INF/content/employee/index.jsp</result>
+		</action>
+
+		<action name="processApp" class="com.gm.hrsystem.action.processAppAction">
+			<interceptor-ref name="store">
+				<param name="operationMode">STORE</param>
+			</interceptor-ref>
+
+			<interceptor-ref name="empStack" />
+
+			<result>/WEB-INF/content/employee/index.jsp</result>
+		<!--	重定位到一个另一个action 会丢失原来的请求参数 所以在路径后面加入了参数-->
+			<result name="input" type="redirect">/AppChange.action?attId=${attId}
+			</result>
+		</action>
+
+		<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+		<action name="ViewApp" class="com.gm.hrsystem.action.ViewAppAction">
+			<interceptor-ref name="mgrStack" />
+			<result>/WEB-INF/content/manager/ViewApp.jsp</result>
+		</action>
+
+		<action name="CheckBack" class="com.gm.hrsystem.action.CheckBackAction">
+			<interceptor-ref name="mgrStack" />
+			<result type="chain">ViewApp</result>
+		</action>
+
+		<action name="ViewEmp" class="com.gm.hrsystem.action.ViewEmpAction">
+			<interceptor-ref name="mgrStack" />
+
+			<result>/WEB-INF/content/manager/ViewEmp.jsp</result>
+		</action>
+
+		<action name="AddEmp">
+			<interceptor-ref name="mgrStack" />
+			<result>/WEB-INF/content/manager/AddEmp.jsp</result>
+		</action>
+
+		<action name="processAdd" class="com.gm.hrsystem.action.processAddAction">
+			<interceptor-ref name="mgrStack" />
+			<interceptor-ref name="token" />
+			<result>/WEB-INF/content/manager/index.jsp</result>
+			<result name="input">/WEB-INF/content/manager/AddEmp.jsp</result>
+			<result name="invalid.token">/WEB-INF/content/manager/AddEmp.jsp</result>
+		</action>
+
+		<action name="DeptSalary" class="com.gm.hrsystem.action.DeptSalaryAction">
+			<interceptor-ref name="mgrStack" />
+			<result>/WEB-INF/content/manager/DeptSalary.jsp</result>
+		</action>
+
+		<action name="*Lang" class="com.gm.hrsystem.action.LangAction">
+			<interceptor-ref name="mgrStack" />
+			<result>/WEB-INF/content/manager/index.jsp</result>
+		</action>
+	</package>
+
+
+
+
+
+
+</struts>

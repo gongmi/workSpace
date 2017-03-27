@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC 
+	"-//Apache Struts//XWork Validator 1.0.3//EN"
+	"http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+<validators>
+
+	<field name="typeId">
+	
+		<field-validator type="required">
+			<message>申请类别必填！</message>
+		</field-validator>
+		
+	</field>
+	
+	<field name="reason">
+	
+		<field-validator type="requiredstring">
+			<message>申请理由必填！</message>
+		</field-validator>
+		<field-validator type="stringlength">
+		<param name="minLength">4</param>
+			<param name="maxLength">10</param>
+			<message>您输入的申请理由必须在4-10个字之间</message>
+		</field-validator>
+<!-- 		<field-validator type="regex"> -->
+<!-- 			<param name="regex"><![CDATA[(\w{6,})]]></param> -->
+<!-- 			<message>您输入的申请理由必须大于6个字符</message> -->
+<!-- 		</field-validator> -->
+		
+	</field>
+ 
+</validators>
