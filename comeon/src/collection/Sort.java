@@ -57,9 +57,10 @@ public final class Sort<T extends Comparable<? super T>> {
 
 		for (tmp = a[i]; leftChild(i) < n; i = child) {
 			child = leftChild(i);
+			//如果当前的左孩子不为最后一个node并且右孩子大于左孩子 那么选右孩子 即选最大的那个孩子
 			if (child != n - 1 && a[child].compareTo(a[child + 1]) < 0)
 				child++;
-			if (tmp.compareTo(a[child]) < 0)
+			if (tmp.compareTo(a[child]) < 0)//如果这个node小于最大的孩子 说明要换 用替换不用交换 因为node的值存起来了
 				a[i] = a[child];
 			else
 				break;
@@ -72,11 +73,11 @@ public final class Sort<T extends Comparable<? super T>> {
 	 */
 	public void heapsort(T[] a) {
 		for (int i = a.length / 2 - 1; i >= 0; i--)
-			/* buildHeap */
+			/* buildHeap 从len的一半处开始下滤 一直到根节点 完成构建大顶堆*/
 			percDown(a, i, a.length);
 		for (int i = a.length - 1; i > 0; i--) {
-			swapReferences(a, 0, i); /* deleteMax */
-			percDown(a, 0, i);
+			swapReferences(a, 0, i); /* 将大顶堆的根节点也就是最大值与i交换  i从len到1 */
+			percDown(a, 0, i);//然后再把 0-i的数组重建堆 其实在这个建堆 只需要下滤根节点就可以了 因为其他结点已经满足要求了
 		}
 	}
 
@@ -119,19 +120,19 @@ public final class Sort<T extends Comparable<? super T>> {
 		int tmpPos = leftPos;
 		int numElements = rightEnd - leftPos + 1;
 
-		// Main loop
+		// 当左与右都有的时候
 		while (leftPos <= leftEnd && rightPos <= rightEnd)
 			if (a[leftPos].compareTo(a[rightPos]) <= 0)
 				tmpArray[tmpPos++] = a[leftPos++];
 			else
 				tmpArray[tmpPos++] = a[rightPos++];
-
+		// 当右已经完结 左还有的时候
 		while (leftPos <= leftEnd)
 			tmpArray[tmpPos++] = a[leftPos++];
-
+		// 当左已经完结 右还有的时候
 		while (rightPos <= rightEnd)
 			tmpArray[tmpPos++] = a[rightPos++];
-
+		//		把temp复制给a
 		for (int i = 0; i < numElements; i++, rightEnd--)
 			a[rightEnd] = tmpArray[rightEnd];
 	}

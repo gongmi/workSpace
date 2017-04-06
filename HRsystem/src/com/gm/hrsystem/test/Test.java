@@ -29,7 +29,7 @@ public class Test {
 	}
 
 	public void autoPunch() {// 建表
-
+//test
 		// 这是不对的！ 要从spring中拿的才被注入了sessionfactory了
 
 		// ApplicationContext ctx = new
