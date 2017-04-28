@@ -6,6 +6,7 @@ package chapter06;
 
 import java.util.HashMap;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * ²¢·¢put
@@ -17,6 +18,7 @@ public class ConcurrentPutHashMap {
 
     public static void main(String[] args) throws InterruptedException {
         final HashMap<String, String> map = new HashMap<String, String>(2);
+        ConcurrentHashMap cmap=new ConcurrentHashMap();
         Thread t = new Thread(new Runnable() {
             @Override
             public void run() {

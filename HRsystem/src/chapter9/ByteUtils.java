@@ -1,5 +1,6 @@
 package chapter9;
-public class CopyOfByteUtils {
+
+public class ByteUtils {
 
 	public static int bytes2Int(byte[] b, int start, int len) {
 		int sum = 0;

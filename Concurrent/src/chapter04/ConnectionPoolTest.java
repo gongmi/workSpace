@@ -15,8 +15,8 @@ public class ConnectionPoolTest {
     static CountDownLatch end;
 
     public static void main(String[] args) throws Exception {
-        // 线程数量，可以线程数量进行观察
-        int threadCount = 50;
+        // 线程数量，可以修改线程数量进行观察
+        int threadCount = 30;
         end = new CountDownLatch(threadCount);
         int count = 20;
         AtomicInteger got = new AtomicInteger();

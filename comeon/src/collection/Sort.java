@@ -1,5 +1,6 @@
 package collection;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public final class Sort<T extends Comparable<? super T>> {
@@ -248,7 +249,6 @@ public final class Sort<T extends Comparable<? super T>> {
 				System.out.println("Error at " + i);
 		System.out.println("Finished checksort");
 	}
-
 	/*
 	 * public static void main( String [ ] args ) { Integer [ ] a = new Integer[
 	 * NUM_ITEMS ]; for( int i = 0; i < a.length; i++ ) a[ i ] = i;
