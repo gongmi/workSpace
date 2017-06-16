@@ -23,6 +23,11 @@ class Point {
 		this.y = y;
 		this.z = z;
 	}
+
+	@Override
+	public String toString() {
+		return "Point [color=" + color + ", x=" + x + ", y=" + y + ", z=" + z + "]";
+	}
 }
 
 public class triangle {
@@ -31,6 +36,8 @@ public class triangle {
 		Scanner in = new Scanner(System.in);
 		int line = in.nextInt();
 		in.nextLine();
+		//注意这句话！！ 当之前读取了一个int后 如果再度取一行 还是在刚刚那一行上读的
+//		所以必须要加上上面那句话 
 		String[] a = new String[line];
 		List<Point> lst = new ArrayList<Point>();
 		for (int i = 0; i < line; i++) {
@@ -42,6 +49,8 @@ public class triangle {
 					Integer.parseInt(cs[3]));
 			lst.add(p);
 		}
+		for (int i = 0; i < line; i++)
+			System.out.println(lst.get(i));
 		double max = 0;
 		for (int i = 0; i < line; i++)
 			for (int j = i + 1; j < line; j++)
@@ -50,8 +59,7 @@ public class triangle {
 					if (cur > max)
 						max = cur;
 				}
-		System.out.println(max);
-
+		System.out.println(String.format("%.5f", max));
 	}
 
 	static double count_triangle_area(Point a, Point b, Point c) {
@@ -66,7 +74,7 @@ public class triangle {
 		side[2] = Math.sqrt(Math.pow(c.x - b.x, 2) + Math.pow(c.y - b.y, 2)
 				+ Math.pow(c.z - b.z, 2));
 
-		if ((a.color != b.color && a.color != c.color) || a.color == b.color && b.color == c.color) {
+		if ((a.color != b.color && a.color != c.color&& b.color != c.color) || a.color == b.color && b.color == c.color) {
 			if (side[0] + side[1] <= side[2] || side[0] + side[2] <= side[1]
 					|| side[1] + side[2] <= side[0])
 				return area;

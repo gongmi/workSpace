@@ -12,6 +12,7 @@ public class main_test {
 		set.add(6);
 		set.add(9);
 		set.add(3);
+		ConcurrentHashMap
 		set.add(5);
 		set.add(7);
 		StringBuffer sb=new StringBuffer();
@@ -19,7 +20,6 @@ public class main_test {
 		StringBuilder sbb=new StringBuilder();
 		sbb.append(false);
 		String s="";
-		s.rep
 		Iterator<Integer> it = set.iterator();
 		while (it.hasNext()) {
 			int i = it.next();

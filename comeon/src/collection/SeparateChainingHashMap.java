@@ -7,8 +7,15 @@ import java.util.List;
 //就是把java语言描述中 SeparateChainingHashTable里面的元素<T>改为Entry<K, V>
 
 //与JDK中真实的HashMap的区别
-//1.这里用了List<Entry<K, V>>[] hashmap 1.8中用的是node 继承了Entry的node 有next
+//这里用了List<Entry<K, V>>[] hashmap 
+//1.8中用的是node 继承了Entry的node 有next
 
+//这里的capacity质数 扩容是原来那个质数的两倍往后的第一个质数
+//1.8是
+
+//这里的表是一个 List数组
+//1.8是一个node数组
+//http://tech.meituan.com/java-hashmap.html
 public class SeparateChainingHashMap<K, V> {
 
 	private static final int DEFAULT_TABLE_SIZE = 5;

@@ -15,6 +15,14 @@ public class TestATM   {
 		 t2.setName("yuan");
 		 t3.start();
 		t1.start();
+		
+		
+		
+		Integer a=null;
+		System.out.println((Integer)null);
+		System.out.println(1==a);
+		System.out.println(a instanceof Integer);
+		System.out.println(new Integer(1)==a);
 //		 t2.start();
 		 
 		

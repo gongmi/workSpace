@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class other {
+public class removeInvalidParentheses {
 
 	public List<String> removeInvalidParentheses(String s) {
 		List<String> ans = new ArrayList<>();
