@@ -12,7 +12,6 @@ public class main_test {
 		set.add(6);
 		set.add(9);
 		set.add(3);
-		ConcurrentHashMap
 		set.add(5);
 		set.add(7);
 		StringBuffer sb=new StringBuffer();
