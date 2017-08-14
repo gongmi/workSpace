@@ -14,6 +14,7 @@ public class ConcurrentTask {
 
      String executionTask(final String taskName) throws ExecutionException, InterruptedException {
         while (true) {
+        	ConcurrentHashMap
             Future<String> future = taskCache.get(taskName); //1.1,2.1
             if (future == null) {
                 Callable<String> task = new Callable<String>() {

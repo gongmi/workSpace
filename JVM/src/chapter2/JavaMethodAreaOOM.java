@@ -1,12 +1,14 @@
 package chapter2;
 
 import java.lang.reflect.Method;
-import net.sf.cglib.proxy.*;
 
-/**
- * VM Args£∫ -XX:PermSize=10M -XX:MaxPermSize=10M
+import net.sf.cglib.proxy.Enhancer;
+import net.sf.cglib.proxy.MethodInterceptor;
+import net.sf.cglib.proxy.MethodProxy;
+
+/**Œ“µƒ ß∞‹¡À
  * 
- * @author zzm
+ * VM Args£∫ -XX:PermSize=10M -XX:MaxPermSize=10M
  */
 public class JavaMethodAreaOOM {
 
@@ -16,8 +18,8 @@ public class JavaMethodAreaOOM {
 			enhancer.setSuperclass(OOMObject.class);
 			enhancer.setUseCache(false);
 			enhancer.setCallback(new MethodInterceptor() {
-				public Object intercept(Object obj, Method method, Object[] args, MethodProxy proxy)
-						throws Throwable {
+				@Override
+				public Object intercept(Object obj, Method method, Object[] args, MethodProxy proxy) throws Throwable {
 					return proxy.invokeSuper(obj, args);
 				}
 			});

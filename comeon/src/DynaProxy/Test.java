@@ -8,5 +8,7 @@ public class Test {
 		Dog dog = (Dog) MyProxyFactory.getProxy(target);
 		dog.info();
 		dog.run();
+		System.out.println(dog.getClass());
+		System.out.println(target.getClass());
 	}
 }

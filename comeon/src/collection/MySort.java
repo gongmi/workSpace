@@ -2,6 +2,7 @@ package collection;
 
 import java.util.Arrays;
 import java.util.Date;
+import java.util.Random;
 
 public class MySort {
 	public static void insertSort(int[] a) {
@@ -15,6 +16,7 @@ public class MySort {
 
 	}
 
+	
 	public static void shellSort(int[] a) {
 		int j = 0;
 		for (int gap = a.length / 2; gap > 0; gap = gap / 2) {
@@ -115,12 +117,13 @@ public class MySort {
 			child = i * 2 + 1;
 			if (child + 1 < n && a[child] < a[child + 1])
 				child++;
-			if (a[i] < a[child])
+			if (temp < a[child])//曾经写错成了if (a[i] < a[child]) 其实就是插入排序的思路！！
 				a[i] = a[child];
 			else
 				break;
 		}
 		a[i]=temp;
 	}
-
+	
+	 
 }
