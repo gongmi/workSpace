@@ -10,11 +10,10 @@ import java.util.concurrent.FutureTask;
 
 public class ConcurrentTask {
 
-    private final ConcurrentMap<Object, Future<String>> taskCache = new ConcurrentHashMap<Object, Future<String>>();
+    private final ConcurrentMap<Object, Future<String>> taskCache = new ConcurrentHashMap<>();
 
      String executionTask(final String taskName) throws ExecutionException, InterruptedException {
         while (true) {
-        	ConcurrentHashMap
             Future<String> future = taskCache.get(taskName); //1.1,2.1
             if (future == null) {
                 Callable<String> task = new Callable<String>() {
@@ -24,7 +23,7 @@ public class ConcurrentTask {
                     }
                 };
                 //1.2创建任务
-                FutureTask<String> futureTask = new FutureTask<String>(task);
+                FutureTask<String> futureTask = new FutureTask<>(task);
                 future = taskCache.putIfAbsent(taskName, futureTask); //1.3
                 if (future == null) {
                     future = futureTask;
