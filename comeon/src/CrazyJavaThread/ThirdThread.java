@@ -17,7 +17,6 @@ public class ThirdThread {
 				return i;
 			}
 		};
-
 		FutureTask<Integer> task = new FutureTask<Integer>(c);
 
 		for (int i = 0; i < 100; i++) {

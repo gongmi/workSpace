@@ -1,18 +1,13 @@
 package chapter10;
 
-import java.util.concurrent.Callable;
-import java.util.concurrent.CancellationException;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
-import java.util.concurrent.FutureTask;
+import java.util.concurrent.*;
 
 public class ConcurrentTask {
-
+  ExecutorService tp=Executors.newCachedThreadPool();
 	private final ConcurrentHashMap<Object, Future<String>> taskCache = new ConcurrentHashMap<Object, Future<String>>();
 
 	String executionTask(final String taskName) throws ExecutionException, InterruptedException {
+		tp.submit(task)
 		while (true) {
 			Future<String> future = taskCache.get(taskName); // 1.1,2.1
 			if (future == null) {
