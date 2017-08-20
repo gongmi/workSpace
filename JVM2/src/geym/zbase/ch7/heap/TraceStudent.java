@@ -6,7 +6,7 @@ import java.util.Vector;
 
 /**
  * dump the heap
- * -XX:+HeapDumpBeforeFullGC -XX:HeapDumpPath=D:/stu.hprof
+ * -XX:+HeapDumpBeforeFullGC -XX:HeapDumpPath=F:/myeclipse_workspace/JVM2/stu.hprof
  * @author geym
  *
  */

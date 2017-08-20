@@ -2,11 +2,8 @@ package geym.zbase.ch4.stw;
 
 import java.util.HashMap;
 
-/**
- * @author Administrator
- *
- */
 public class StopWorldTest {
+//	负责消耗内存
 	public static class MyThread extends Thread{
 		HashMap map=new HashMap();
 		@Override
@@ -29,6 +26,7 @@ public class StopWorldTest {
 			}
 		}
 	}
+//	负责打印时间
 	public static class PrintThread extends Thread{
 		public static final long starttime=System.currentTimeMillis();
 		@Override

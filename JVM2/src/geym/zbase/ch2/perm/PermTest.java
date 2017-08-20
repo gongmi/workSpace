@@ -19,6 +19,10 @@ public class PermTest {
 			}
 		} catch (Exception e) {
 			System.out.println("total create count:" + i);
+			System.out.println("");
+			System.out.println("");
+			System.out.println("");
+			System.out.println("");
 			throw e;
 		}
 	}

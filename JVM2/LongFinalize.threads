@@ -1,0 +1,47 @@
+Thread 0x41795f8
+
+  locals:
+
+Thread 0x4179770
+
+  locals:
+
+Thread 0x41798e8
+  at java.lang.Thread.sleep(J)V (Native Method)
+  at geym.zbase.ch5.LongFinalize$LF.finalize()V (LongFinalize.java:17)
+  at java.lang.System$2.invokeFinalize(Ljava/lang/Object;)V (System.java:1270)
+  at java.lang.ref.Finalizer.runFinalizer(Lsun/misc/JavaLangAccess;)V (Finalizer.java:98)
+  at java.lang.ref.Finalizer.access$100(Ljava/lang/ref/Finalizer;Lsun/misc/JavaLangAccess;)V (Finalizer.java:34)
+  at java.lang.ref.Finalizer$FinalizerThread.run()V (Finalizer.java:210)
+
+  locals:
+    objectId=0x3ef3c50, line=1
+    objectId=0x4179a88, line=2
+    objectId=0x3ef3c50, line=2
+    objectId=0x3ef3c60, line=3
+    objectId=0x4179a88, line=3
+    objectId=0x3ef3c50, line=3
+    objectId=0x3ef3c60, line=4
+    objectId=0x4179a88, line=4
+    objectId=0x41798e8, line=5
+    objectId=0x4179a88, line=5
+    objectId=0x3ef3c60, line=5
+
+Thread 0x4179a90
+  at java.lang.Object.wait(J)V (Native Method)
+  at java.lang.Object.wait()V (Object.java:502)
+  at java.lang.ref.Reference$ReferenceHandler.run()V (Reference.java:157)
+
+  locals:
+    objectId=0x4179c08, line=1
+    objectId=0x4179a90, line=2
+    objectId=0x4179c08, line=2
+
+Thread 0x4179c38
+  at java.lang.OutOfMemoryError.<init>()V (OutOfMemoryError.java:48)
+  at geym.zbase.ch5.LongFinalize$LF.<init>()V (LongFinalize.java:12)
+  at geym.zbase.ch5.LongFinalize.main([Ljava/lang/String;)V (LongFinalize.java:27)
+
+  locals:
+    objectId=0x4179c10, line=2
+

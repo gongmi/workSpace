@@ -20,6 +20,8 @@ public class MyInvocationHandler implements InvocationHandler {
 	}
 
 	public Object getProxy() throws Exception {
-		return Proxy.newProxyInstance(target.getClass().getClassLoader(), target.getClass().getInterfaces(), this);
+		ClassLoader cl1 = target.getClass().getClassLoader();
+		ClassLoader cl2 = Thread.currentThread().getContextClassLoader();
+		return Proxy.newProxyInstance(cl2, target.getClass().getInterfaces(), this);
 	}
 }

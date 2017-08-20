@@ -1,0 +1,42 @@
+Thread 0x3caa458
+
+  locals:
+
+Thread 0x3caa240
+
+  locals:
+
+Thread 0x3c06490
+  at java.lang.Object.wait(J)V (Native Method)
+  at java.lang.ref.ReferenceQueue.remove(J)Ljava/lang/ref/Reference; (ReferenceQueue.java:143)
+  at java.lang.ref.ReferenceQueue.remove()Ljava/lang/ref/Reference; (ReferenceQueue.java:164)
+  at java.lang.ref.Finalizer$FinalizerThread.run()V (Finalizer.java:209)
+
+  locals:
+    objectId=0x3c063f0, line=1
+    objectId=0x3c06408, line=1
+    objectId=0x3c063f0, line=2
+    objectId=0x3c06490, line=3
+    objectId=0x3c88e30, line=3
+
+Thread 0x3c05f70
+  at java.lang.Object.wait(J)V (Native Method)
+  at java.lang.Object.wait()V (Object.java:502)
+  at java.lang.ref.Reference$ReferenceHandler.run()V (Reference.java:157)
+
+  locals:
+    objectId=0x3c05f00, line=1
+    objectId=0x3c05f70, line=2
+    objectId=0x3c05f00, line=2
+
+Thread 0x3c051c8
+  at java.lang.Runtime.gc()V (Native Method)
+  at java.lang.System.gc()V (System.java:993)
+  at geym.zbase.ch7.heap.TraceStudent.main([Ljava/lang/String;)V (TraceStudent.java:41)
+
+  locals:
+    objectId=0x3cc1e00, line=2
+    objectId=0x3cca998, line=2
+    objectId=0x3ccaa28, line=2
+    objectId=0x3ccaab8, line=2
+

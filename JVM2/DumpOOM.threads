@@ -1,0 +1,39 @@
+Thread 0x42f7538
+
+  locals:
+
+Thread 0x42f76b0
+
+  locals:
+
+Thread 0x42f7828
+  at java.lang.Object.wait(J)V (Native Method)
+  at java.lang.ref.ReferenceQueue.remove(J)Ljava/lang/ref/Reference; (ReferenceQueue.java:143)
+  at java.lang.ref.ReferenceQueue.remove()Ljava/lang/ref/Reference; (ReferenceQueue.java:164)
+  at java.lang.ref.Finalizer$FinalizerThread.run()V (Finalizer.java:209)
+
+  locals:
+    objectId=0x42f79b0, line=1
+    objectId=0x42f79a8, line=1
+    objectId=0x42f79b0, line=2
+    objectId=0x42f7828, line=3
+    objectId=0x42f79c8, line=3
+
+Thread 0x42f79d0
+  at java.lang.Object.wait(J)V (Native Method)
+  at java.lang.Object.wait()V (Object.java:502)
+  at java.lang.ref.Reference$ReferenceHandler.run()V (Reference.java:157)
+
+  locals:
+    objectId=0x42f7b48, line=1
+    objectId=0x42f79d0, line=2
+    objectId=0x42f7b48, line=2
+
+Thread 0x42f7b90
+  at java.lang.OutOfMemoryError.<init>()V (OutOfMemoryError.java:48)
+  at geym.zbase.ch3.heap.DumpOOM.main([Ljava/lang/String;)V (DumpOOM.java:19)
+
+  locals:
+    objectId=0x42f7b50, line=1
+    objectId=0x42f7b60, line=1
+

@@ -3,7 +3,7 @@ package geym.zbase.ch5;
 /**
  * 有了一个慢的finalize()会导致无法回收
  * 
- * -Xmx10m -Xms10m -XX:+PrintGCDetails -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath="D:/f.dump"
+ * -Xmx10m -Xms10m -XX:+PrintGCDetails -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath="F:/myeclipse_workspace/JVM2/LongFinalize.dump"
  * @author Administrator
  *
  */

@@ -33,7 +33,6 @@ public class ThreadSafe {
 		long begin=System.currentTimeMillis();
 		t1.start();
 		t2.start();
-		
 		while(t1.isAlive() || t2.isAlive()){
 //		while(t1.isAlive()){
 			Thread.sleep(1);
