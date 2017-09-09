@@ -1,9 +1,5 @@
 package collection;
 
-import java.util.Arrays;
-import java.util.Date;
-import java.util.Random;
-
 public class MySort {
 	public static void insertSort(int[] a) {
 		int j = 0;

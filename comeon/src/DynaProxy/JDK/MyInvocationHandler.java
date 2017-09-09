@@ -1,9 +1,8 @@
-package DynaProxy;
+package DynaProxy.JDK;
 
 import java.lang.reflect.*;
 
 public class MyInvocationHandler implements InvocationHandler {
-	// 需要被代理的对象
 	private Object target;
 
 	public MyInvocationHandler(Object target) {
@@ -12,10 +11,9 @@ public class MyInvocationHandler implements InvocationHandler {
 	}
 
 	public Object invoke(Object proxy, Method method, Object[] args) throws Exception {
-		DogUtil du = new DogUtil();
-		du.method1();
+		System.out.println("Before:" + method);
 		Object result = method.invoke(target, args);
-		du.method2();
+		System.out.println("After:" + method);
 		return result;
 	}
 

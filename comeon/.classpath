@@ -2,6 +2,9 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="F:/光盘/java/实战Java虚拟机——jvm故障诊断与性能优化——随书源码/src_lib/asm-all-5.0.3.jar" sourcepath="F:/光盘/java/实战Java虚拟机——jvm故障诊断与性能优化——随书源码/src_lib/asm-src-5.0.3.zip"/>
+	<classpathentry kind="lib" path="F:/光盘/java/实战Java虚拟机——jvm故障诊断与性能优化——随书源码/src_lib/asm-src-5.0.3.zip"/>
+	<classpathentry kind="lib" path="F:/光盘/java/实战Java虚拟机——jvm故障诊断与性能优化——随书源码/src_lib/cglib-nodep-3.1.jar" sourcepath="F:/光盘/java/实战Java虚拟机——jvm故障诊断与性能优化——随书源码/src_lib/cglib-src-3.1.jar"/>
+	<classpathentry kind="lib" path="F:/光盘/java/实战Java虚拟机——jvm故障诊断与性能优化——随书源码/src_lib/cglib-src-3.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

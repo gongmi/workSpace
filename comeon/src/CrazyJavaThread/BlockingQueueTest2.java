@@ -20,7 +20,7 @@ class Producer extends Thread {
 			} catch (Exception ex) {
 				ex.printStackTrace();
 			}
-			System.out.println(getName() + "生产完成：" + bq);
+			System.out.println(getName() + "生产完成,当前剩下的包子：" + bq);
 		}
 	}
 }
@@ -44,14 +44,14 @@ class Consumer extends Thread {
 			} catch (Exception ex) {
 				ex.printStackTrace();
 			}
-			System.out.println(getName() + "消费完成：" + bq);
+			System.out.println(getName() + "消费完成,当前剩下的包子：" + bq);
 		}
 	}
 }
 
 public class BlockingQueueTest2 {
 	public static void main(String[] args) {
-		BlockingQueue<String> bq = new ArrayBlockingQueue<>(2);
+		BlockingQueue<String> bq = new LinkedBlockingQueue<>(2);
 	Thread prod1=new Producer(bq);
 	Thread prod2=new Producer(bq);
 	Thread prod3=new Producer(bq);

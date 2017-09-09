@@ -10,7 +10,6 @@ public class Atomic {
 	private static final int MAX_THREADS = 3;					//线程数
 	private static final int TASK_COUNT = 3;						//任务数
 	private static final int TARGET_COUNT = 10000000;				//目标总数
-	AtomicInteger
 	private AtomicLong acount =new AtomicLong(0L);			//无锁的原子操作
 	private LongAdder lacount=new LongAdder();
 	private long count=0;
